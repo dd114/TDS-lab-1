@@ -10,31 +10,40 @@ int main() {
 	//double newX0 = 78, newV0 = 0, A = 1, B = 1;
 	EulerMethod Euler;
 	cout << "Start partial calculations" << endl;
-
+	double value = 1. / 2;
 	cout << Euler.ValuesOfX(1, 1e+4) << endl;
-	cout << Euler.ValuesOfX(1. / 2, 1e+4) << endl;
+	cout << Euler.ValuesOfX(value, 1e+4) - 1.88807609975728 << endl;
 
+	//1.4
+	//do not work
+	//have tested for x = 0.5
+	cout << (Euler.ValuesOfX(value, 1e+4) + (Euler.ValuesOfX(value, 1e+3) - Euler.ValuesOfX(value, 1e+4))) - 1.88807609975728 << endl;
 	cout << "End partial calculations" << endl;
 
 
-	int numberOfValues = 1e+4;
+	int numberOfValues = 1e+3;
 	vector<int> stepOfPointTimeGrid(numberOfValues);
 	vector<double> valuesFunction(numberOfValues);
 
+	//1.3
 	for (int i = 1; i < numberOfValues; i++){
 		stepOfPointTimeGrid[i] = i;
 		valuesFunction[i] = Euler.ValuesOfX(1, stepOfPointTimeGrid[i]);
 	}
 
 	Euler.makeFileForGraph(stepOfPointTimeGrid, valuesFunction, "1.2.txt");
-	Euler.drawGraph("1.2.txt", "Values");
+	//Euler.drawGraph("1.2.txt", "Values");
 
+
+	//1.3
 	vector<double> exactSolution(numberOfValues);
 	for (int i = 1; i < numberOfValues; i++)
 		exactSolution[i] = valuesFunction[i] - (-3.68617024223302);
 	
 	Euler.makeFileForGraph(stepOfPointTimeGrid, exactSolution, "1.3.txt");
-	Euler.drawGraph("1.3.txt", "Accuracy solution");
+	//Euler.drawGraph("1.3.txt", "Accuracy solution");
+
+
 
 
 	

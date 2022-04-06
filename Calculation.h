@@ -72,6 +72,7 @@ public:
 		std::ofstream graphic("file");
 		cout << str << endl;
 		//graphic << "plot " << str << "; pause mouse keypress" << "\n";
+		graphic << "set border 3" << endl;
 		graphic << "plot " << str << endl;
 		graphic.close();
 		system("gnuplot -persist file");
