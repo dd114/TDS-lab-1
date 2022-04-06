@@ -27,7 +27,14 @@ int main() {
 	}
 
 	Euler.makeFileForGraph(stepOfPointTimeGrid, valuesFunction, "1.2.txt");
-	//Euler.drawGraph("1.2.txt", "Values");
+	Euler.drawGraph("1.2.txt", "Values");
+
+	vector<double> exactSolution(numberOfValues);
+	for (int i = 1; i < numberOfValues; i++)
+		exactSolution[i] = valuesFunction[i] - (-3.68617024223302);
+	
+	Euler.makeFileForGraph(stepOfPointTimeGrid, exactSolution, "1.3.txt");
+	Euler.drawGraph("1.3.txt", "Accuracy solution");
 
 
 	

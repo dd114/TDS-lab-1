@@ -10,8 +10,8 @@ using namespace std;
 
 class Calculation{
 private:
-string pointSchedule = "\" using 1:2 title \"points\" with points pointtype 5";
-string lineSchedule = "\" using 1:2 title \"lines\" with lines lw 3";
+string pointSchedule = "with points pointtype 5";
+string lineSchedule = "with lines lw 3";
 string path = "\"D:/MEGA/ÎÍÔ/6 סולוסענ/ÒÐÑ/labs/lab1/";
 
 //double example(double x) {
@@ -68,8 +68,7 @@ public:
 
 	void drawGraph(string name, string text) {
 		string str;
-		str = path + name + pointSchedule + "; " +
-			"set term wxt title \"" + text + "\"";
+		str = path + name + "\" using 1:2 title \"" + text + "\" " + pointSchedule + ";";
 		std::ofstream graphic("file");
 		cout << str << endl;
 		//graphic << "plot " << str << "; pause mouse keypress" << "\n";
