@@ -14,6 +14,15 @@ class RungeKuttaMethod :
 	}
 
 
+private:
+	void Calculate(double t) { //finish it in the future
+		double step = t / (numberOfPoint - 1);
+		//cout << "step = " << step << endl;
+		x[0] = x0;
+		v[0] = v0;
 
+
+
+	}
 };
 

@@ -1,1 +1,1 @@
-plot "D:/MEGA/ÎÍÔ/6 סולוסענ/ÒÐÑ/labs/lab1/1.2.dat" using 1:2 title "points" with points pointtype 5; set term wxt title "Values"
+plot "D:/MEGA/ÎÍÔ/6 סולוסענ/ÒÐÑ/labs/lab1/1.2.txt" using 1:2 title "points" with points pointtype 5; set term wxt title "Values"

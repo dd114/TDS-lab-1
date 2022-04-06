@@ -42,9 +42,9 @@ private:
 		for (int i = 1; i < numberOfPoint; i++) {
 			x[i] = x[i - 1] + v[i - 1] * step;
 			v[i] = v[i - 1] + f2(x[i - 1]) * step;
-
 		}
 
 	}
+
 };
 

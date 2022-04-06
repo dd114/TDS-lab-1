@@ -3,11 +3,10 @@
 #include <vector>
 #include <fstream>
 #include <cassert>
+#include <math.h>
 
 
 using namespace std;
-
-
 
 class Calculation{
 private:
@@ -54,13 +53,13 @@ public:
 	}
 	
 	Calculation() { // individual option
-		this->x0 = 78;
-		this->v0 = 0;
-		this->A = 1e-5;
-		this->B = 1e+10;
+		this->x0 = 0;
+		this->v0 = 10;
+		this->A = 1;
+		this->B = 1;
 		this->numberOfPoint = 1e+3;
 		this->f2 = [](double x) {
-			return (1 / (x * x) + 60 / (x * x * x * x)) / 1.9;
+			return -6 / 6.65 * (2 * x * sinh(x) + x * x * cosh(x)) ;
 		};
 		this->x.resize(numberOfPoint);
 		this->v.resize(numberOfPoint);
@@ -96,6 +95,10 @@ public:
 		}
 
 
+	}
+
+	void setNumberOfPoint(int numberOfPoint) {
+		this->numberOfPoint = numberOfPoint;
 	}
 
 };
