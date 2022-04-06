@@ -9,7 +9,13 @@ int main() {
 	//double newX0 = 78, newV0 = 0, A = 1e-5, B = 1e+10;
 	//double newX0 = 78, newV0 = 0, A = 1, B = 1;
 	EulerMethod Euler;
-	cout << Euler.ValuesOfX(3) << endl;
+	cout << "Start partial calculations" << endl;
+
+	cout << Euler.ValuesOfX(1, 1e+4) << endl;
+	cout << Euler.ValuesOfX(1. / 2, 1e+4) << endl;
+
+	cout << "End partial calculations" << endl;
+
 
 	int numberOfValues = 1e+4;
 	vector<int> stepOfPointTimeGrid(numberOfValues);
@@ -21,7 +27,7 @@ int main() {
 	}
 
 	Euler.makeFileForGraph(stepOfPointTimeGrid, valuesFunction, "1.2.txt");
-	Euler.drawGraph("1.2.txt", "Values");
+	//Euler.drawGraph("1.2.txt", "Values");
 
 
 	
