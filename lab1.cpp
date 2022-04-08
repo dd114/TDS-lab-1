@@ -1,4 +1,5 @@
 ﻿#include "EulerMethod.h"
+#include "AdamsMethod.h"
 
 double newF2(double);
 
@@ -10,8 +11,9 @@ int main() {
 	//double newX0 = 78, newV0 = 0, A = 1, B = 1;
 	EulerMethod Euler;
 	cout << "Start partial calculations" << endl;
-	double value = 1. / 2;
 	cout << Euler.ValuesOfX(1, 1e+4) << endl;
+
+	double value = 1. / 2;
 	cout << Euler.ValuesOfX(value, 1e+4) - 1.88807609975728 << endl;
 
 	//1.4
@@ -44,8 +46,9 @@ int main() {
 	//Euler.drawGraph("1.3.txt", "Accuracy solution");
 
 
-
-
+	//2.1
+	AdamsMethod Adams();
+	cout << "Adams " << Euler.ValuesOfX(1, 1e+4) << endl;
 	
 }
 

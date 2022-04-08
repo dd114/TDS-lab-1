@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AdamsMethod.cpp" />
     <ClCompile Include="Calculation.cpp" />
     <ClCompile Include="EulerMethod.cpp" />
     <ClCompile Include="lab1.cpp" />
     <ClCompile Include="RungeKuttaMethod.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdamsMethod.h" />
     <ClInclude Include="Calculation.h" />
     <ClInclude Include="EulerMethod.h" />
     <ClInclude Include="RungeKuttaMethod.h" />
