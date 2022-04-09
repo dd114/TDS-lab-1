@@ -1,2 +1,2 @@
 set border 3
-plot "D:/MEGA/ÎÍÔ/6 סולוסענ/ÒÐÑ/labs/lab1/1.2.txt" using 1:2 title "Values" with points pointtype 5;
+plot "D:/MEGA/ÎÍÔ/6 סולוסענ/ÒÐÑ/labs/lab1/2.2.txt" using 1:2 title "Adams values" with points pointtype 5;

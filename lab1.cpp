@@ -57,6 +57,10 @@ int main() {
 	//2.2
 	for (int i = 1; i < numberOfValues; i++) 
 		valuesFunction[i] = Euler.ValuesOfX(1, stepOfPointTimeGrid[i]);
+
+	Adams.makeFileForGraph(stepOfPointTimeGrid, valuesFunction, "2.2.txt");
+	Adams.drawGraph("2.2.txt", "Adams values");
+
 	
 }
 
