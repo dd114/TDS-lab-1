@@ -30,7 +30,7 @@ int main() {
 	double valueXwhenTequalTo1 = -3.68617024223302;
 	vector<int> stepOfPointTimeGrid(numberOfValues);
 	vector<double> valuesFunction(numberOfValues);
-	vector<double> exactSolution(numberOfValues);
+	vector<double> accuracySolution(numberOfValues);
 
 	//1.2
 	for (int i = 1; i < numberOfValues; i++){
@@ -44,9 +44,9 @@ int main() {
 
 	//1.3
 	for (int i = 1; i < numberOfValues; i++)
-		exactSolution[i] = valuesFunction[i] - valueXwhenTequalTo1;
+		accuracySolution[i] = valuesFunction[i] - valueXwhenTequalTo1;
 	
-	Euler.makeFileForGraph(stepOfPointTimeGrid, exactSolution, "1.3.txt");
+	Euler.makeFileForGraph(stepOfPointTimeGrid, accuracySolution, "1.3.txt");
 	//Euler.drawGraph("1.3.txt", "Accuracy Euler solution");
 
 
@@ -59,7 +59,15 @@ int main() {
 		valuesFunction[i] = Euler.ValuesOfX(1, stepOfPointTimeGrid[i]);
 
 	Adams.makeFileForGraph(stepOfPointTimeGrid, valuesFunction, "2.2.txt");
-	Adams.drawGraph("2.2.txt", "Adams values");
+	//Adams.drawGraph("2.2.txt", "Adams values");
+
+	//2.3
+	for (int i = 1; i < numberOfValues; i++)
+		accuracySolution[i] = valuesFunction[i] - valueXwhenTequalTo1;
+
+	Adams.makeFileForGraph(stepOfPointTimeGrid, accuracySolution, "2.3.txt");
+	Adams.drawGraph("2.3.txt", "Accuracy Adams solution");
+
 
 	
 }
