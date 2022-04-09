@@ -23,31 +23,31 @@ protected:
 	int numberOfPoint;
 	//float a, b;
 	//double (*f1)(double);
-	double (*f2)(double);
+	double (*f)(double);
 	//double (*answer)(double);
 
 	vector<double> x;
 	vector<double> v;
 
 public:
-	Calculation(double x0, double v0, double A, double B, double (*f2)(double), int numberOfPoint) {
+	Calculation(double x0, double v0, double A, double B, double (*f)(double), int numberOfPoint) {
 		this->x0 = x0;
 		this->v0 = v0;
 		this->A = A;
 		this->B = B;
 		this->numberOfPoint = numberOfPoint;
-		this->f2 = f2;
+		this->f = f;
 		this->x.resize(numberOfPoint);
 		this->v.resize(numberOfPoint);
 	}
 
-	Calculation(double x0, double v0, double A, double B, double (*f2)(double)) {
+	Calculation(double x0, double v0, double A, double B, double (*f)(double)) {
 		this->x0 = x0;
 		this->v0 = v0;
 		this->A = A;
 		this->B = B;
 		this->numberOfPoint = 1e+3;
-		this->f2 = f2;
+		this->f = f;
 		this->x.resize(numberOfPoint);
 		this->v.resize(numberOfPoint);
 	}
@@ -58,7 +58,7 @@ public:
 		this->A = 1;
 		this->B = 1;
 		this->numberOfPoint = 1e+3;
-		this->f2 = [](double x) {
+		this->f = [](double x) {
 			return -6 / 6.65 * (2 * x * sinh(x) + x * x * cosh(x)) ;
 		};
 		this->x.resize(numberOfPoint);

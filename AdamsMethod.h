@@ -4,10 +4,10 @@ class AdamsMethod :
     public Calculation {
 
 public:
-	AdamsMethod(double x0, double v0, double A, double B, double (*f2)(double), int numberOfPoint) : Calculation(x0, v0, A, B, *f2, numberOfPoint) {
+	AdamsMethod(double x0, double v0, double A, double B, double (*f)(double), int numberOfPoint) : Calculation(x0, v0, A, B, *f, numberOfPoint) {
 	}
 
-	AdamsMethod(double x0, double v0, double A, double B, double (*f2)(double)) : Calculation(x0, v0, A, B, *f2) {
+	AdamsMethod(double x0, double v0, double A, double B, double (*f)(double)) : Calculation(x0, v0, A, B, *f) {
 	}
 
 	AdamsMethod() : Calculation() {
@@ -43,11 +43,11 @@ private:
 		v[0] = v0;
 		
 		x[1] = x[0] + v[0] * step;
-		v[1] = v[0] + f2(x[0]) * step;
+		v[1] = v[0] + f(x[0]) * step;
 
 		for (int i = 2; i < numberOfPoint; i++) {
 			x[i] = x[i - 1] + step / 2 * (3 * v[i - 1] - v[i - 2]);
-			v[i] = v[i - 1] + step / 2 * (3 * f2(x[i - 1]) - f2(x[i - 2]));
+			v[i] = v[i - 1] + step / 2 * (3 * f(x[i - 1]) - f(x[i - 2]));
 		}
 
 	}

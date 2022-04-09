@@ -1,5 +1,6 @@
 ﻿#include "EulerMethod.h"
 #include "AdamsMethod.h"
+#include "RungeKuttaMethod.h"
 
 double newF2(double);
 
@@ -50,6 +51,9 @@ int main() {
 	//Euler.drawGraph("1.3.txt", "Accuracy Euler solution");
 
 
+
+
+
 	//2.1
 	AdamsMethod Adams;
 	cout << "Adams = " << Adams.ValuesOfX(1, 1e+4) << endl;
@@ -66,10 +70,14 @@ int main() {
 		accuracySolution[i] = valuesFunction[i] - valueXwhenTequalTo1;
 
 	Adams.makeFileForGraph(stepOfPointTimeGrid, accuracySolution, "2.3.txt");
-	Adams.drawGraph("2.3.txt", "Accuracy Adams solution");
+	//Adams.drawGraph("2.3.txt", "Accuracy Adams solution");
 
 
 	
+	//3.1
+	RungeKuttaMethod RungeKutta;
+	cout << "RungeKutta = " << RungeKutta.ValuesOfX(1, 1e+4) << endl;
+
 }
 
 double newF2(double x) {
