@@ -9,11 +9,12 @@ int main() {
 	//cout << "Тест русского языка" << endl;
 	//double newX0 = 78, newV0 = 0, A = 1e-5, B = 1e+10;
 	//double newX0 = 78, newV0 = 0, A = 1, B = 1;
-	EulerMethod Euler;
+	
 	cout << "Start partial calculations" << endl;
 
 	//1.1
-	cout << "Euler " << Euler.ValuesOfX(1, 1e+4) << endl;
+	EulerMethod Euler;
+	cout << "Euler = " << Euler.ValuesOfX(1, 1e+4) << endl;
 
 	//double value = 1. / 2;
 	//cout << Euler.ValuesOfX(value, 1e+4) - 1.88807609975728 << endl;
@@ -50,8 +51,12 @@ int main() {
 
 
 	//2.1
-	AdamsMethod Adams();
-	cout << "Adams " << Euler.ValuesOfX(1, 1e+4) << endl;
+	AdamsMethod Adams;
+	cout << "Adams = " << Adams.ValuesOfX(1, 1e+4) << endl;
+	
+	//2.2
+	for (int i = 1; i < numberOfValues; i++) 
+		valuesFunction[i] = Euler.ValuesOfX(1, stepOfPointTimeGrid[i]);
 	
 }
 
