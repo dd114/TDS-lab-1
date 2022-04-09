@@ -7,6 +7,8 @@ double newF2(double);
 
 int main() {
 	system("chcp 1251");
+	cout.precision(10);
+
 	//cout << "Тест русского языка" << endl;
 	//double newX0 = 78, newV0 = 0, A = 1e-5, B = 1e+10;
 	//double newX0 = 78, newV0 = 0, A = 1, B = 1;
@@ -77,6 +79,21 @@ int main() {
 	//3.1
 	RungeKuttaMethod RungeKutta;
 	cout << "RungeKutta = " << RungeKutta.ValuesOfX(1, 1e+4) << endl;
+
+	//3.2
+	for (int i = 1; i < numberOfValues; i++)
+		valuesFunction[i] = RungeKutta.ValuesOfX(1, stepOfPointTimeGrid[i]);
+
+	RungeKutta.makeFileForGraph(stepOfPointTimeGrid, valuesFunction, "3.2.txt");
+	//RungeKutta.drawGraph("3.2.txt", "RungeKutta values");
+
+	//3.3
+	for (int i = 1; i < numberOfValues; i++)
+		accuracySolution[i] = valuesFunction[i] - valueXwhenTequalTo1;
+
+	RungeKutta.makeFileForGraph(stepOfPointTimeGrid, accuracySolution, "3.3.txt");
+	//RungeKutta.drawGraph("3.3.txt", "Accuracy RungeKutta solution");
+
 
 }
 
