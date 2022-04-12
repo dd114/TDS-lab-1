@@ -142,6 +142,7 @@
     <ClCompile Include="AdamsMethod.cpp" />
     <ClCompile Include="Calculation.cpp" />
     <ClCompile Include="EulerMethod.cpp" />
+    <ClCompile Include="FiniteDifferenceMethod.cpp" />
     <ClCompile Include="lab1.cpp" />
     <ClCompile Include="RungeKuttaMethod.cpp" />
   </ItemGroup>
@@ -149,6 +150,7 @@
     <ClInclude Include="AdamsMethod.h" />
     <ClInclude Include="Calculation.h" />
     <ClInclude Include="EulerMethod.h" />
+    <ClInclude Include="FiniteDifferenceMethod.h" />
     <ClInclude Include="RungeKuttaMethod.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

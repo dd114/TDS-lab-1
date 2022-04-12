@@ -35,7 +35,7 @@ public:
 	}
 
 private:
-	void Calculate(double t) { //finish it in the future
+	void Calculate(double t) {
 		double step = t / (numberOfPoint - 1);
 		//cout << "step = " << step << endl;
 
