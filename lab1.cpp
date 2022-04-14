@@ -1,6 +1,7 @@
 ﻿#include "EulerMethod.h"
 #include "AdamsMethod.h"
 #include "RungeKuttaMethod.h"
+#include "FiniteDifferenceMethod.h"
 
 double newF2(double);
 
@@ -95,6 +96,15 @@ int main() {
 
 	RungeKutta.makeFileForGraph(stepOfPointTimeGrid, accuracySolution, "3.3.txt");
 	//RungeKutta.drawGraph("3.3.txt", "Accuracy RungeKutta solution");
+
+
+
+
+
+
+
+	FiniteDifferenceMethod FiniteDifference;
+	FiniteDifference.ValuesOfX(4);
 
 
 }

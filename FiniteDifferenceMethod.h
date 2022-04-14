@@ -36,20 +36,41 @@ public:
 
 private:
 
-	void Calculate(double t) {
-		double step = t / (numberOfPoint - 1);
-		//cout << "step = " << step << endl;
-		x[0] = x0;
-		v[0] = v0;
+	vector<double> tridiagonalSolution(vector<vector<double>> matrix1, vector<double> matrix2) {
+		assert(matrix1.size() == matrix2.size() && "Sizes match");
 
-		x[1] = x[0] + v[0] * step;
-		v[1] = v[0] + f(x[0]) * step;
+		double y;
+		int N = matrix2.size();
+		int N1 = N - 1;
+		vector<double> a(N), B(N), matRes(N);
 
-		for (int i = 2; i < numberOfPoint; i++) {
-			x[i] = x[i - 1] + step / 2 * (3 * v[i - 1] - v[i - 2]);
-			v[i] = v[i - 1] + step / 2 * (3 * f(x[i - 1]) - f(x[i - 2]));
+		y = matrix1[0][0];
+		a[0] = -matrix1[0][1] / y;
+		B[0] = matrix2[0] / y;
+		for (int i = 1; i < N1; i++) {
+			y = matrix1[i][i] + matrix1[i][i - 1] * a[i - 1];
+			a[i] = -matrix1[i][i + 1] / y;
+			B[i] = (matrix2[i] - matrix1[i][i - 1] * B[i - 1]) / y;
 		}
 
+		matRes[N1] = (matrix2[N1] - matrix1[N1][N1 - 1] * B[N1 - 1]) / (matrix1[N1][N1] + matrix1[N1][N1 - 1] * a[N1 - 1]);
+		for (int i = N1 - 1; i >= 0; i--) {
+			matRes[i] = a[i] * matRes[i + 1] + B[i];
+		}
+
+		return matRes;
+
+	}
+
+	void Calculate(double t) {
+		vector<vector<double>> matrix1 = { {1,2,0,0,0}, {3,4,5,0,0}, {0,6,7,8,0}, {0,0,9,10,11}, {0,0,0,12,13} };
+		vector<double> matrix2 = { {1,2,3,4,5} };
+		vector<double> answer = tridiagonalSolution(matrix1, matrix2);
+
+		cout << "Solution of SLAE:" << endl;
+		for (int i = 0; i < matrix2.size(); i++) {
+			cout << answer[i] << endl;
+		}
 	}
 
 };
