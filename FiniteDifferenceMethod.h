@@ -4,10 +4,10 @@ class FiniteDifferenceMethod :
     public Calculation {
 
 public:
-	FiniteDifferenceMethod(double x0, double v0, double A, double B, double (*f)(double), int numberOfPoint) : Calculation(x0, v0, A, B, *f, numberOfPoint) {
+	FiniteDifferenceMethod(double x0, double v0, double A, double B, double (*f1)(double), int numberOfPoint) : Calculation(x0, v0, A, B, *f1, numberOfPoint) {
 	}
 
-	FiniteDifferenceMethod(double x0, double v0, double A, double B, double (*f)(double)) : Calculation(x0, v0, A, B, *f) {
+	FiniteDifferenceMethod(double x0, double v0, double A, double B, double (*f1)(double)) : Calculation(x0, v0, A, B, *f1) {
 	}
 
 	FiniteDifferenceMethod() : Calculation() {
@@ -63,14 +63,23 @@ private:
 	}
 
 	void Calculate(double t) {
-		vector<vector<double>> matrix1 = { {1,2,0,0,0}, {3,4,5,0,0}, {0,6,7,8,0}, {0,0,9,10,11}, {0,0,0,12,13} };
-		vector<double> matrix2 = { {1,2,3,4,5} };
-		vector<double> answer = tridiagonalSolution(matrix1, matrix2);
+		//vector<vector<double>> matrix1 = { {1,2,0,0,0}, {3,4,5,0,0}, {0,6,7,8,0}, {0,0,9,10,11}, {0,0,0,12,13} };
+		//vector<double> matrix2 = {1,2,3,4,5};
+		//vector<double> answer = tridiagonalSolution(matrix1, matrix2);
 
-		cout << "Solution of SLAE:" << endl;
-		for (int i = 0; i < matrix2.size(); i++) {
-			cout << answer[i] << endl;
+		//cout << "Solution of SLAE:" << endl;
+		//for (int i = 0; i < matrix2.size(); i++) {
+		//	cout << answer[i] << endl;
+		//}
+
+		//vector<vector<double>> matrix1 = { {1,2,0,0,0}, {3,4,5,0,0}, {0,6,7,8,0}, {0,0,9,10,11}, {0,0,0,12,13} };
+
+
+		for (int i = 1; i < numberOfPoint; i++) {
+
 		}
+
+
 	}
 
 };

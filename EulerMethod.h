@@ -4,10 +4,10 @@ class EulerMethod :
     public Calculation {
 
 public:
-	EulerMethod(double x0, double v0, double A, double B, double (*f)(double), int numberOfPoint) : Calculation(x0, v0, A, B, *f, numberOfPoint) {
+	EulerMethod(double x0, double v0, double A, double B, double (*f1)(double), int numberOfPoint) : Calculation(x0, v0, A, B, *f1, numberOfPoint) {
 	}
 
-	EulerMethod(double x0, double v0, double A, double B, double (*f)(double)) : Calculation(x0, v0, A, B, *f) {
+	EulerMethod(double x0, double v0, double A, double B, double (*f1)(double)) : Calculation(x0, v0, A, B, *f1) {
 	}
 
 	EulerMethod() : Calculation() {
@@ -41,7 +41,7 @@ private:
 		v[0] = v0;
 		for (int i = 1; i < numberOfPoint; i++) {
 			x[i] = x[i - 1] + v[i - 1] * step;
-			v[i] = v[i - 1] + f(x[i - 1]) * step;
+			v[i] = v[i - 1] + f1(x[i - 1]) * step;
 		}
 
 	}

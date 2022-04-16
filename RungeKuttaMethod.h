@@ -5,10 +5,10 @@ class RungeKuttaMethod :
     public Calculation {
 
 public:
-	RungeKuttaMethod(double x0, double v0, double A, double B, double (*f2)(double), int numberOfPoint) : Calculation(x0, v0, A, B, *f2, numberOfPoint) {
+	RungeKuttaMethod(double x0, double v0, double A, double B, double (*f1)(double), int numberOfPoint) : Calculation(x0, v0, A, B, *f1, numberOfPoint) {
 	}
 
-	RungeKuttaMethod(double x0, double v0, double A, double B, double (*f2)(double)) : Calculation(x0, v0, A, B, *f2) {
+	RungeKuttaMethod(double x0, double v0, double A, double B, double (*f1)(double)) : Calculation(x0, v0, A, B, *f1) {
 	}
 
 	RungeKuttaMethod() : Calculation() {
@@ -43,16 +43,16 @@ private:
 		x[0] = x0;
 
 		for (int i = 1; i < numberOfPoint; i++) {
-			double kv0 = f(x[i - 1]);
+			double kv0 = f1(x[i - 1]);
 			double kx0 = v[i - 1];
 
-			double kv1 = f(x[i - 1] + step / 2 * kx0);
+			double kv1 = f1(x[i - 1] + step / 2 * kx0);
 			double kx1 = v[i - 1] + step / 2 * kv0;
 
-			double kv2 = f(x[i - 1] + step / 2 * kx1);
+			double kv2 = f1(x[i - 1] + step / 2 * kx1);
 			double kx2 = v[i - 1] + step / 2 * kv1;
 
-			double kv3 = f(x[i - 1] + step * kx2);
+			double kv3 = f1(x[i - 1] + step * kx2);
 			double kx3 = v[i - 1] + step * kv2;
 
 			v[i] = v[i - 1] + step / 6 * (kv0 + 2 * kv1 + 2 * kv2 + kv3);
