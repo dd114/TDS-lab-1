@@ -13,17 +13,15 @@ public:
 	FiniteDifferenceMethod() : Calculation() {
 	}
 
-	double ValuesOfX(double t) {
-		double newT = A * t;
+	double ValuesOfXY(double x) {
 		
-		return Calculate(newT);
+		return Calculate(x);
 	}
 
-	double ValuesOfX(double t, int numberOfPoint) {
+	double ValuesOfY(double x, int numberOfPoint) {
 		this->numberOfPoint = numberOfPoint;
-		double newT = A * t;
 		
-		return Calculate(newT);
+		return Calculate(x);
 	}
 
 	~FiniteDifferenceMethod() {
@@ -59,7 +57,7 @@ private:
 
 	}
 
-	double Calculate(double t) {
+	double Calculate(double x) {
 		//vector<vector<double>> matrix1 = { {1,2,0,0,0}, {3,4,5,0,0}, {0,6,7,8,0}, {0,0,9,10,11}, {0,0,0,12,13} };
 		//vector<double> matrix2 = {1,2,3,4,5};
 		//vector<double> answer = tridiagonalSolution(matrix1, matrix2);
@@ -69,16 +67,17 @@ private:
 		//	cout << answer[i] << endl;
 		//}
 
-		double step = t / (numberOfPoint - 1);
+		double step = x / (numberOfPoint - 1);
 
 		vector<vector<double>> matrix1(numberOfPoint - 2, vector<double>(numberOfPoint - 2));
 		vector<double> matrix2(numberOfPoint - 2);
 
-		double ai = 1 / (step * step) - p2(1) / (2 * step);
-		double bi = -2 / (step * step) + q2(1) - ai * ((alfa1 / step) / (alfa0 - alfa1 / step));
-		double ci = 1 / (step * step)+ p2(1) / (2 * step);
-		double di = f2(1) - ai * (A2 / (alfa0 - alfa1 / step));
+		double ai = 1 / (step * step) - p2(1 * step) / (2 * step);
+		double bi = -2 / (step * step) + q2(1 * step) - ai * ((alfa1 / step) / (alfa0 - alfa1 / step));
+		double ci = 1 / (step * step)+ p2(1 * step) / (2 * step);
+		double di = f2(1 * step) - ai * (A2 / (alfa0 - alfa1 / step));
 
+		double a1 = ai, b1 = bi, c1 = ci, d1 = di;
 
 		matrix1[0][0] = bi;
 		matrix1[0][1] = ci;
@@ -99,10 +98,10 @@ private:
 		}
 
 
-		ci = 1 / (step * step)+ p2((numberOfPoint - 3) * step) / (2 * step);
-		ai = 1 / (step * step) - p2((numberOfPoint - 3) * step) / (2 * step);
-		bi = -2 / (step * step) + q2((numberOfPoint - 3) * step) + ci * ((beta1 / step) / (beta0 + beta1 / step));
-		di = f2((numberOfPoint - 3) * step) - ci * (B2 / (beta0 - beta1 / step));
+		ci = 1 / (step * step)+ p2((numberOfPoint - 2) * step) / (2 * step);
+		ai = 1 / (step * step) - p2((numberOfPoint - 2) * step) / (2 * step);
+		bi = -2 / (step * step) + q2((numberOfPoint - 2) * step) + ci * ((beta1 / step) / (beta0 + beta1 / step));
+		di = f2((numberOfPoint - 2) * step) - ci * (B2 / (beta0 - beta1 / step));
 
 		matrix1[numberOfPoint - 3][numberOfPoint -  4] = ai;
 		matrix1[numberOfPoint - 3][numberOfPoint - 3] = bi;
@@ -116,11 +115,19 @@ private:
 
 		vector<double> valuesY = tridiagonalSolution(matrix1, matrix2);
 
-		//print1DArray(valuesY);
+		print1DArray(valuesY);
 		//cout << valuesY.back() << endl;
 
 		double lastValueY = (B2 + valuesY.back() * beta1 / step) / (beta0 + beta1 / step);
 		cout << "Yn = " << lastValueY << endl;
+
+		cout << "precision = " << abs((b1 * valuesY[0] + c1 * valuesY[1]) - d1) << endl;
+		//cout << d1 << endl;
+		//cout << b1 * valuesY[0] << endl;
+		//cout << c1 * valuesY[1] << endl;
+		//cout << b1 * -4.535559 << endl;
+		//cout << c1 * -4.515309 << endl;
+		cout << "precision = " << abs((b1 * -4.535559 + c1 * -4.515309) - d1) << endl;
 		
 		return lastValueY;
 

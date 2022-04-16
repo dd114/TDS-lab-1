@@ -104,7 +104,7 @@ int main() {
 
 
 	FiniteDifferenceMethod FiniteDifference;
-	FiniteDifference.ValuesOfX(4, 1000);
+	FiniteDifference.ValuesOfY(1, 100);
 
 
 }
