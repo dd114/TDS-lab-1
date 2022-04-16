@@ -15,18 +15,15 @@ public:
 
 	double ValuesOfX(double t) {
 		double newT = A * t;
-		Calculate(newT);
-		return B * x[this->numberOfPoint - 1];
+		
+		return Calculate(newT);
 	}
 
 	double ValuesOfX(double t, int numberOfPoint) {
 		this->numberOfPoint = numberOfPoint;
-		this->x.resize(numberOfPoint);
-		this->v.resize(numberOfPoint);
-
 		double newT = A * t;
-		Calculate(newT);
-		return B * x[this->numberOfPoint - 1];
+		
+		return Calculate(newT);
 	}
 
 	~FiniteDifferenceMethod() {
@@ -36,7 +33,7 @@ public:
 
 private:
 
-	vector<double> tridiagonalSolution(vector<vector<double>> matrix1, vector<double> matrix2) {
+	vector<double> tridiagonalSolution(const vector<vector<double>>& matrix1, const vector<double>& matrix2) {
 		assert(matrix1.size() == matrix2.size() && "Sizes match");
 
 		double y;
@@ -62,7 +59,7 @@ private:
 
 	}
 
-	void Calculate(double t) {
+	double Calculate(double t) {
 		//vector<vector<double>> matrix1 = { {1,2,0,0,0}, {3,4,5,0,0}, {0,6,7,8,0}, {0,0,9,10,11}, {0,0,0,12,13} };
 		//vector<double> matrix2 = {1,2,3,4,5};
 		//vector<double> answer = tridiagonalSolution(matrix1, matrix2);
@@ -72,13 +69,81 @@ private:
 		//	cout << answer[i] << endl;
 		//}
 
-		//vector<vector<double>> matrix1 = { {1,2,0,0,0}, {3,4,5,0,0}, {0,6,7,8,0}, {0,0,9,10,11}, {0,0,0,12,13} };
+		double step = t / (numberOfPoint - 1);
+
+		vector<vector<double>> matrix1(numberOfPoint - 2, vector<double>(numberOfPoint - 2));
+		vector<double> matrix2(numberOfPoint - 2);
+
+		double ai = 1 / (step * step) - p2(1) / (2 * step);
+		double bi = -2 / (step * step) + q2(1) - ai * ((alfa1 / step) / (alfa0 - alfa1 / step));
+		double ci = 1 / (step * step)+ p2(1) / (2 * step);
+		double di = f2(1) - ai * (A2 / (alfa0 - alfa1 / step));
 
 
-		for (int i = 1; i < numberOfPoint; i++) {
+		matrix1[0][0] = bi;
+		matrix1[0][1] = ci;
 
+		matrix2[0] = di;
+
+		for (int i = 2; i < numberOfPoint - 2; i++) {
+			ai = 1 / (step * step) - p2(i * step) / (2 * step);
+			bi = -2 / (step * step) + q2(i * step);
+			ci = 1 / (step * step)+ p2(i * step) / (2 * step);
+			di = f2(i * step);
+
+			matrix1[i - 1][i - 2] = ai;
+			matrix1[i - 1][i - 1] = bi;
+			matrix1[i - 1][i] = ci;
+
+			matrix2[i - 1] = di;
 		}
 
+
+		ci = 1 / (step * step)+ p2((numberOfPoint - 3) * step) / (2 * step);
+		ai = 1 / (step * step) - p2((numberOfPoint - 3) * step) / (2 * step);
+		bi = -2 / (step * step) + q2((numberOfPoint - 3) * step) + ci * ((beta1 / step) / (beta0 + beta1 / step));
+		di = f2((numberOfPoint - 3) * step) - ci * (B2 / (beta0 - beta1 / step));
+
+		matrix1[numberOfPoint - 3][numberOfPoint -  4] = ai;
+		matrix1[numberOfPoint - 3][numberOfPoint - 3] = bi;
+
+		matrix2[numberOfPoint - 3] = di;
+
+
+		//print2DArray(matrix1);
+		//print1DArray(matrix2);
+
+
+		vector<double> valuesY = tridiagonalSolution(matrix1, matrix2);
+
+		//print1DArray(valuesY);
+		//cout << valuesY.back() << endl;
+
+		double lastValueY = (B2 + valuesY.back() * beta1 / step) / (beta0 + beta1 / step);
+		cout << "Yn = " << lastValueY << endl;
+		
+		return lastValueY;
+
+	}
+
+	template <typename T>
+	void print2DArray(const vector<vector<T>>& matrix1) {
+
+		for (int i = 0; i < matrix1.size(); i++) {
+			for (int j = 0; j < matrix1[i].size(); j++) {
+				cout << matrix1[i][j] << " ";
+			}
+			cout << endl;
+		}
+
+	}
+
+	template <typename T>
+	void print1DArray(const vector<T>& matrix1) {
+
+		for (int i = 0; i < matrix1.size(); i++) {
+				cout << matrix1[i] << endl;
+		}
 
 	}
 
