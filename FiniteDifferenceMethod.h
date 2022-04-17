@@ -4,12 +4,6 @@ class FiniteDifferenceMethod :
     public Calculation {
 
 public:
-	FiniteDifferenceMethod(double x0, double v0, double A, double B, double (*f1)(double), int numberOfPoint) : Calculation(x0, v0, A, B, *f1, numberOfPoint) {
-	}
-
-	FiniteDifferenceMethod(double x0, double v0, double A, double B, double (*f1)(double)) : Calculation(x0, v0, A, B, *f1) {
-	}
-
 	FiniteDifferenceMethod() : Calculation() {
 	}
 
