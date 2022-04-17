@@ -72,12 +72,14 @@ private:
 		vector<vector<double>> matrix1(numberOfPoint - 2, vector<double>(numberOfPoint - 2));
 		vector<double> matrix2(numberOfPoint - 2);
 
-		double ai = 1 / (step * step) - p2(1 * step) / (2 * step);
-		double bi = -2 / (step * step) + q2(1 * step) - ai * ((alfa1 / step) / (alfa0 - alfa1 / step));
-		double ci = 1 / (step * step)+ p2(1 * step) / (2 * step);
-		double di = f2(1 * step) - ai * (A2 / (alfa0 - alfa1 / step));
+		double ai;
+		//ai = 1 / (step * step) - p2(1 * step) / (2 * step);
 
-		double a1 = ai, b1 = bi, c1 = ci, d1 = di;
+		double bi = alfa0 - alfa1 / step;
+		double ci = alfa1 / step;
+		double di = A2;
+
+		//double a1 = ai, b1 = bi, c1 = ci, d1 = di;
 
 		matrix1[0][0] = bi;
 		matrix1[0][1] = ci;
@@ -98,10 +100,11 @@ private:
 		}
 
 
-		ci = 1 / (step * step)+ p2((numberOfPoint - 2) * step) / (2 * step);
-		ai = 1 / (step * step) - p2((numberOfPoint - 2) * step) / (2 * step);
-		bi = -2 / (step * step) + q2((numberOfPoint - 2) * step) + ci * ((beta1 / step) / (beta0 + beta1 / step));
-		di = f2((numberOfPoint - 2) * step) - ci * (B2 / (beta0 - beta1 / step));
+		//ci = 1 / (step * step)+ p2((numberOfPoint - 2) * step) / (2 * step);
+
+		ai = -beta1 / step;
+		bi = beta0 + beta1 / step;
+		di = B2;
 
 		matrix1[numberOfPoint - 3][numberOfPoint -  4] = ai;
 		matrix1[numberOfPoint - 3][numberOfPoint - 3] = bi;
@@ -115,19 +118,19 @@ private:
 
 		vector<double> valuesY = tridiagonalSolution(matrix1, matrix2);
 
-		print1DArray(valuesY);
+		//print1DArray(valuesY);
 		//cout << valuesY.back() << endl;
 
 		double lastValueY = (B2 + valuesY.back() * beta1 / step) / (beta0 + beta1 / step);
-		cout << "Yn = " << lastValueY << endl;
+		//cout << "Yn = " << lastValueY << endl;
 
-		cout << "precision = " << abs((b1 * valuesY[0] + c1 * valuesY[1]) - d1) << endl;
+		//cout << "precision = " << abs((b1 * valuesY[0] + c1 * valuesY[1]) - d1) << endl;
 		//cout << d1 << endl;
 		//cout << b1 * valuesY[0] << endl;
 		//cout << c1 * valuesY[1] << endl;
 		//cout << b1 * -4.535559 << endl;
 		//cout << c1 * -4.515309 << endl;
-		cout << "precision = " << abs((b1 * -4.535559 + c1 * -4.515309) - d1) << endl;
+		//cout << "precision = " << abs((b1 * -4.535559 + c1 * -4.515309) - d1) << endl;
 		
 		return lastValueY;
 

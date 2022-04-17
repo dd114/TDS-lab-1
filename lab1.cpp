@@ -3,7 +3,7 @@
 #include "RungeKuttaMethod.h"
 #include "FiniteDifferenceMethod.h"
 
-double newF2(double);
+double f1(double);
 
 
 int main() {
@@ -104,12 +104,13 @@ int main() {
 
 
 	FiniteDifferenceMethod FiniteDifference;
-	FiniteDifference.ValuesOfY(1, 100);
+	cout << "Yn = " << FiniteDifference.ValuesOfY(1, 1000) << endl;
+	
 
 
 }
 
-double newF2(double x) {
+double f1(double x) {
 	return (1 / (x * x) + 60 / (x * x * x * x)) / 1.9;
 }
 
