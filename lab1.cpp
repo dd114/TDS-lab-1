@@ -102,11 +102,24 @@ int main() {
 
 
 
-
+	//4.1
 	FiniteDifferenceMethod FiniteDifference;
-	cout << "Yn = " << FiniteDifference.ValuesOfY(1, 1000) << endl;
+	cout << "FiniteDifference = " << FiniteDifference.ValuesOfY(1, 1e+4) << endl;
 	
+	//4.2
+	for (int i = 5; i < numberOfValues; i++) //offset in array and draw graphics must be = 5!
+		valuesFunction[i] = FiniteDifference.ValuesOfY(1, stepOfPointTimeGrid[i]);
 
+	FiniteDifference.makeFileForGraph(stepOfPointTimeGrid, valuesFunction, "4.2.txt");
+	//FiniteDifference.drawGraph("4.2.txt", "FiniteDifference values");
+
+	//4.3
+	double valueYwhenTequalTo1 = -1.904985;
+	for (int i = 5; i < numberOfValues; i++) //offset in array and draw graphics must be = 5!
+		accuracySolution[i] = valuesFunction[i] - valueYwhenTequalTo1;
+
+	FiniteDifference.makeFileForGraph(stepOfPointTimeGrid, accuracySolution, "4.3.txt");
+	//FiniteDifference.drawGraph("4.3.txt", "Accuracy FiniteDifference solution");
 
 }
 

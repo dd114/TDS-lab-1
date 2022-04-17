@@ -58,14 +58,7 @@ private:
 	}
 
 	double Calculate(double x) {
-		//vector<vector<double>> matrix1 = { {1,2,0,0,0}, {3,4,5,0,0}, {0,6,7,8,0}, {0,0,9,10,11}, {0,0,0,12,13} };
-		//vector<double> matrix2 = {1,2,3,4,5};
-		//vector<double> answer = tridiagonalSolution(matrix1, matrix2);
-
-		//cout << "Solution of SLAE:" << endl;
-		//for (int i = 0; i < matrix2.size(); i++) {
-		//	cout << answer[i] << endl;
-		//}
+		assert(numberOfPoint > 3 && "Is too little size");
 
 		double step = x / (numberOfPoint - 1);
 
