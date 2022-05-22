@@ -169,7 +169,7 @@ set psdir
 set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap v5
 GNUTERM = "qt"
 VoxelDistance = 0.0
-## Last datafile plotted: "printSaturationWPermeabilityW.txt"
+## Last datafile plotted: "printSaturationWPermeabilityW.txt" with lines
 plot "1.2.txt" using 1:2 title "First"
 pause -1
 #    EOF
